@@ -1,4 +1,5 @@
 import json
+import tempfile
 import threading
 import uuid
 from pathlib import Path
@@ -10,7 +11,8 @@ from django.http import FileResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
 
-DOWNLOAD_DIR = Path(getattr(settings, "DOWNLOAD_DIR", "/downloads"))
+# Use system temporary directory so server files never pollute project directory
+DOWNLOAD_DIR = Path(getattr(settings, "DOWNLOAD_DIR", tempfile.gettempdir())) / "youpiv_downloads"
 DOWNLOADS = {}
 DOWNLOADS_LOCK = threading.Lock()
 

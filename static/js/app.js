@@ -22,7 +22,7 @@ function showState(data) {
   ].filter(Boolean).join(' · ');
 
   if (data.status === 'completed') {
-    statusText.textContent = '✓ Téléchargement prêt ! Enregistrement en cours…';
+    statusText.textContent = '✓ Traitement terminé ! Téléchargement dans votre navigateur…';
   } else if (data.status === 'queued') {
     statusText.textContent = 'Préparation du téléchargement…';
   } else {
@@ -43,8 +43,14 @@ async function poll(id) {
     if (data.download_url) {
       fileLink.href = data.download_url;
       fileLink.hidden = false;
-      // Trigger automatic browser file download
-      window.location.href = data.download_url;
+
+      // Automatically trigger browser download on user device
+      const a = document.createElement('a');
+      a.href = data.download_url;
+      a.download = '';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
     return;
   }
