@@ -1,0 +1,32 @@
+name: 🚀 Feature Request
+description: Proposer une nouvelle fonctionnalité ou une amélioration.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proposez une idée de fonctionnalité ou d'amélioration pour le projet !
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Votre demande est-elle liée à un problème ?
+      description: Une description claire de ce qu'est le problème (ex: Je suis toujours frustré quand...).
+    validations:
+      required: false
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution proposée
+      description: Une description claire de ce que vous aimeriez qu'il se passe.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives envisagées
+      description: Une description des solutions alternatives que vous avez envisagées.
+    validations:
+      required: false
